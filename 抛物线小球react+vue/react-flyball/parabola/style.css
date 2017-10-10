@@ -1,0 +1,16 @@
+body {
+  height: 100vh;
+}
+.target {
+  width: 40px;
+  height: 40px;
+  background-color: yellowgreen;
+  transform: translate(280px, 300px);
+}
+.flyBall {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: skyblue;
+}
