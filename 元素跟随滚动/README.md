@@ -213,17 +213,17 @@ l.addEventListener('mouseover',function(){
 
 即
 
->$$\frac{ch1-ph1}{ch2-ph2} = \frac{scrollTopMax1}{scrollTopMax2}$$
+![math1](./img/math1.png)
 
 也就是说，如果已经确定了滚动容器内容的高度(即子元素高度ch)与滚动容器本身的高度(即容器元素高度ph)，那么就一定能确定滚动条的最大滚动高度(`scrollTop`)，而这两个高度值基本上都是可以获取到的，所以就能得到 `scrollTop`
 
 因此，想要让两个滚动元素容器等比例上下滚动，即其中一个元素滚到头或者滚到底，另外一个元素也能对应滚到头和滚到底，那么只要得到这两个滚动容器元素之间的 ``scrollTop`最大值的比例(`scale`)就行了。
 
->$$scale = \frac{scrollTopMax1}{scrollTopMax2}$$
+![math2](./img/math2.png)
 
 确定了 `scale`之后，实时滚动时，只需要获取主动滚动容器元素的 `scrollTop1`，就能得到另外一个跟随滚动的容器元素对应的 `scrollTop2`：
 
->$$scrollTop2 = scrollTop1 * scale$$
+![math2](./img/math3.png)
 
 思路弄清晰了，写代码就是很容易的事情了，效果如下：
 
