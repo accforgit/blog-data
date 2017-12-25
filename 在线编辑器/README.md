@@ -1,6 +1,8 @@
 项目文档说明：
+
 [自己实现一个功能较为简单的编辑器](./README/README1.md)
-[使用 Ace使用一个编辑器](./README/README2.md)
+
+[使用 Ace实现一个编辑器](./README/README2.md)
 
 ## 启动项目
 
