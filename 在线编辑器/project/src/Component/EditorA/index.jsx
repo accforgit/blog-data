@@ -1,20 +1,21 @@
 import React from 'react'
 import marked from 'marked'
-// import highlight from 'highlight.js'
+import highlight from 'highlight.js'
 
-// import 'highlight.js/styles/atelier-dune-light.css'
+import '../../static/style/common.css'
+import '../../static/style/js-highlight.css'
 import './style.css'
 
-// highlight.configure({
-//   tabReplace: '  ',
-//   classPrefix: 'hljs-',
-//   languages: ['CSS', 'HTML, XML', 'JavaScript', 'PHP', 'Python', 'Stylus', 'TypeScript', 'Markdown']
-// })
-// marked.setOptions({
-//   highlight (code) {
-//     return highlight.highlightAuto(code).value
-//   }
-// })
+highlight.configure({
+  tabReplace: '  ',
+  classPrefix: 'hljs-',
+  languages: ['CSS', 'HTML, XML', 'JavaScript', 'PHP', 'Python', 'Stylus', 'TypeScript', 'Markdown']
+})
+marked.setOptions({
+  highlight (code) {
+    return highlight.highlightAuto(code).value
+  }
+})
 
 export default class EditorA extends React.Component {
   constructor(props) {
@@ -57,7 +58,6 @@ export default class EditorA extends React.Component {
   }
 
   setCurrentIndex(index) {
-    console.log('index:', index)
     this.currentTabIndex = index
   }
 
@@ -71,7 +71,6 @@ export default class EditorA extends React.Component {
   }
 
   onContentChange(e) {
-    console.log('input', e.target.innerText)
     this.setState({
       previewContent: marked(e.target.innerText)
     })
@@ -79,7 +78,6 @@ export default class EditorA extends React.Component {
   }
 
   setScrollValue() {
-    console.log('reset')
     // 设置值，方便 scrollBy 操作
     this.scale = (this.previewWrap.offsetHeight - this.previewContainer.offsetHeight) / (this.editWrap.offsetHeight - this.editContainer.offsetHeight)
     this.hasContentChanged = false

@@ -5,9 +5,8 @@ import {
 } from 'react-router-dom'
 
 import EditorA from './Component/EditorA'
+import EditorC from './Component/EditorC'
 import EditorB from './Component/EditorB'
-
-// import RouteMap from './routeMap'
 
 class App extends Component {
   render() {
@@ -17,6 +16,7 @@ class App extends Component {
         <Route exact path="/" component={EditorA}/>
         <Route path="/a" component={EditorA}/>
         <Route path="/b" component={EditorB}/>
+        <Route path="/c" component={EditorC}/>
       </div>
       </Router>
     )

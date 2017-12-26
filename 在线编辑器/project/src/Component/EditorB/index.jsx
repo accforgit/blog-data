@@ -2,14 +2,14 @@ import React from 'react'
 import marked from 'marked'
 import highlight from 'highlight.js'
 
-import AceEditor from '../../Component/AceEditor/index'
-import {editorHandler} from '../../Component/AceEditor/index'
+import AceEditor, {editorHandler} from '../../Component/AceEditor/index'
 
 import 'brace/mode/markdown'
 import 'brace/theme/github'
 
-import '../../static/style/js-highlight.css'
-import './style.css'
+require('../../static/style/common.css')
+require('../../static/style/js-highlight.css')
+require('./style.css')
 
 highlight.configure({
   tabReplace: '  ',
@@ -48,8 +48,8 @@ export default class EditorA extends React.Component {
               wrapEnabled={true}
               tabSize={2}
               fontSize={14}
-              showGutter={false}
               showPrintMargin={false}
+              showGutter={false}
               height={state.aceBoxH + 'px'}
               width={'100%'}
               debounceChangePeriod={60}
@@ -59,7 +59,7 @@ export default class EditorA extends React.Component {
                 console.log('ace-loaded')
               }}
               name="aceEditorMain"
-              editorProps={{$blockScrolling: true}}
+              editorProps={{$blockScrolling: false}}
             />
           }
         </div>

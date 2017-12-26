@@ -1,0 +1,162 @@
+.markdown-body {
+  word-wrap: break-word;
+  background-color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  line-height: 1.5; }
+  .markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h5 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25; }
+  .markdown-body h1 {
+    padding-bottom: 0.3em;
+    font-size: 2em;
+    border-bottom: 1px solid #eaecef; }
+  .markdown-body h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid #eaecef; }
+  .markdown-body h3 {
+    font-size: 1.25em; }
+  .markdown-body h4 {
+    font-size: 1em; }
+  .markdown-body h5 {
+    font-size: 0.875em; }
+  .markdown-body h6 {
+    font-size: 0.85em;
+    color: #6a737d; }
+  .markdown-body a {
+    color: #0366d6;
+    text-decoration: none; }
+  .markdown-body a:hover {
+    text-decoration: underline; }
+  .markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body table, .markdown-body pre {
+    margin-top: 0;
+    margin-bottom: 16px; }
+  .markdown-body ol, .markdown-body ul {
+    padding-left: 2em; }
+  .markdown-body li {
+    list-style: initial;
+    word-wrap: break-all; }
+    .markdown-body li > p {
+      margin-top: 16px; }
+    .markdown-body li + li {
+      margin-top: .25em; }
+  .markdown-body dl {
+    padding: 0; }
+  .markdown-body dl dt {
+    padding: 0;
+    margin-top: 16px;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: 600; }
+  .markdown-body dl dd {
+    padding: 0 16px;
+    margin-bottom: 16px; }
+  .markdown-body table {
+    display: block;
+    width: 100%;
+    overflow: auto; }
+    .markdown-body table th {
+      font-weight: 600; }
+    .markdown-body table th, .markdown-body table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5; }
+    .markdown-body table tr {
+      background-color: #fff;
+      border-top: 1px solid #c6cbd1; }
+      .markdown-body table tr:nth-child(2n) {
+        background-color: #f6f8fa; }
+    .markdown-body table img {
+      background-color: transparent; }
+  .markdown-body img {
+    max-width: 100%;
+    box-sizing: content-box;
+    background-color: #fff; }
+  .markdown-body hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #e1e4e8;
+    border: 0; }
+  .markdown-body blockquote {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: 0.25em solid #dfe2e5; }
+    .markdown-body blockquote > :first-child {
+      margin-top: 0; }
+    .markdown-body blockquote > :last-child {
+      margin-bottom: 0; }
+  .markdown-body code, .markdown-body tt {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px; }
+    .markdown-body code br, .markdown-body tt br {
+      display: none; }
+  .markdown-body pre {
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 3px; }
+    .markdown-body pre code {
+      font-size: 100%;
+      white-space: pre; }
+    .markdown-body pre code, .markdown-body pre tt {
+      display: inline;
+      max-width: auto;
+      padding: 0;
+      margin: 0;
+      overflow: visible;
+      line-height: inherit;
+      word-wrap: normal;
+      background-color: transparent;
+      border: 0; }
+
+* {
+  box-sizing: border-box; }
+
+.edit-header {
+  position: relative;
+  height: 64px;
+  padding: 0 18px;
+  border-bottom: 1px solid #ddd; }
+  .edit-header .title-input {
+    height: 100%;
+    width: 100%;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+    border: none;
+    outline: none; }
+
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+  background-color: transparent;
+  border-radius: 9px; }
+  ::-webkit-scrollbar:hover {
+    background-color: #fafafa; }
+
+::-webkit-scrollbar-track:hover {
+  background: #f6f6f6; }
+
+::-webkit-scrollbar-thumb {
+  border-radius: 9px;
+  background-clip: content-box;
+  border: 5px solid transparent;
+  background-color: #c2c2c2;
+  background-clip: content-box; }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #A4A4A4; }
+
+::-webkit-scrollbar-thumb:vertical:active {
+  background-color: #9da1a5;
+  border: 5px solid transparent; }

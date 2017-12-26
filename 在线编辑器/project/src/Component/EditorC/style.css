@@ -1,0 +1,41 @@
+body {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+  padding: 0; }
+
+a {
+  color: #08c;
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: underline; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #222;
+  font-weight: 100;
+  margin: 1em 0; }
+
+.editor-main-c {
+  display: flex;
+  overflow: hidden; }
+  .editor-main-c .common-container {
+    width: 50%; }
+  .editor-main-c .editor-container {
+    border-bottom: 1px solid #ddd; }
+  .editor-main-c .preview-container {
+    overflow-y: scroll;
+    border: 1px solid #ddd;
+    border-top: none; }
+    .editor-main-c .preview-container .preview-wrapper {
+      padding: 20px; }
+      .editor-main-c .preview-container .preview-wrapper *:last-child {
+        margin-bottom: 0; }
+      .editor-main-c .preview-container .preview-wrapper *:first-child {
+        margin-top: 0; }
+
+.ReactCodeMirror {
+  height: 100%; }
+  .ReactCodeMirror .CodeMirror {
+    height: 100%; }

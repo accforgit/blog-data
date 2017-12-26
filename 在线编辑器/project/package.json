@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "brace": "^0.11.0",
+    "codemirror": "^5.33.0",
     "highlight.js": "^9.12.0",
+    "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "marked": "^0.3.7",
     "node-sass-chokidar": "^0.0.3",
