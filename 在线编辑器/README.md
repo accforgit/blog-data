@@ -2,7 +2,7 @@
 
 [自己实现一个功能较为简单的编辑器](./README/README1.md)
 
-[使用 Ace实现一个编辑器](./README/README2.md)
+[使用 Ace 和 CodeMirror 实现一个编辑器](./README/README2.md)
 
 ## 启动项目
 
@@ -16,3 +16,6 @@
 
 地址栏输入下面的地址，进入[使用 Ace使用一个编辑器](./README/README2.md)的页面
 >http://localhost:3000/b
+
+地址栏输入下面的地址，进入[使用 CodeMirror](./README/README2.md)的页面
+>http://localhost:3000/c
