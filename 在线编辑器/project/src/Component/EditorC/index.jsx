@@ -75,7 +75,7 @@ export default class EditorC extends React.Component {
         <input type="text" className="title-input" placeholder="输入文章标题..." spellCheck="false"/>
       </header>,
       <div className="editor-main-c" ref={node=>this.aceBox = node} style={{height: state.editorBoxH + 'px'}} key='main'>
-        <div className="ace-tm common-container editor-container" onMouseOver={this.setCurrentIndex.bind(this, 1)} ref={node=>this.editContainer=node}>
+        <div className="common-container editor-container" onMouseOver={this.setCurrentIndex.bind(this, 1)} ref={node=>this.editContainer=node}>
           {
             state.editorBoxH &&
             <CodemirrorEditor
