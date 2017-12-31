@@ -77,7 +77,7 @@ slp.init({
 |`nextCName`|`string`|`page-next`|下一页 按钮的类名`class`|否|
 |`disbalePrevCName`|`string`|`no-prev`|禁用 上一页 按钮的可用性时给此按钮添加的类名`class`|否|
 |`disbaleNextCName`|`string`|`no-next`|禁用 下一页 按钮的可用性时给此按钮添加的类名`class`|否|
-|`pageNumberCName`|`string`|`page-numbert`|不包括 上一页 下一页、省略号占位符按钮之外的所有页码元素统一类名|否|
+|`pageNumberCName`|`string`|`page-number`|不包括 上一页 下一页、省略号占位符按钮之外的所有页码元素统一类名|否|
 |`swEvent`|`string`|`click`|触发切换页面的事件|否|
 |`onPageChange`|`string`|-|页码切换时的回调函数|否|
 
