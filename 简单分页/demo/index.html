@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SimplePagination</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="box"></div>
+  <form action="" id="page-go">
+    <input type="text" id="page-num">
+    <input type="submit" id="goto" value="Go">
+  </form>
+</body>
+<script src='./index.js'></script>
+<script>
+  const slp = new SimplePagination(12)
+  slp.init({
+    container: '.box',
+    maxShowBtnCount: 3,
+    onPageChange: state => {console.log('pagination change:', state.pageNumber)}
+  })
+  document.getElementById('page-go').addEventListener('submit', e => {
+    e.preventDefault()
+    slp.gotoPage(+document.getElementById('page-num').value)
+  })
+  // document.getElementById('page-num').addEventListener('keyup', e => {
+  //   e.key === 'Enter' && slp.gotoPage(+document.getElementById('page-num').value)
+  // })
+</script>
+</html>
