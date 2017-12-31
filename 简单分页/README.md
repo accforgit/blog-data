@@ -71,7 +71,7 @@ slp.init({
 |`container`|`NodeElement`|`body`|一个`DOM`元素对象，表示分页的容器|否|
 |`maxShowBtnCount`|`number`|`5`|不包括开头和结尾的两个固定按钮外，中间最多展示几个数字页码按钮|否|
 |`pCName`|`string`|`page-li`|所有的分页页码元素的统一类名，包括上一页、下一页|否|
-|`activeCName`|`string`|-|当选中页码时添加的类名`class`|是|
+|`activeCName`|`string`|`page-active`|当选中页码时添加的类名`class`|否|
 |`dataNumberAttr`|`string`|页码元素上的一个属性，其值为页码元素所表示的页码|`data-number`|否|
 |`prevCName`|`string`|`page-prev`|上一页 按钮的类名`class`|否|
 |`nextCName`|`string`|`page-next`|下一页 按钮的类名`class`|否|
