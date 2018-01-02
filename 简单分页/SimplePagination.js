@@ -162,7 +162,7 @@ class SimplePagination {
         paginationStr += `<li class="${pCName} ${pageNumberCName}" ${dataNumberAttr}='${i}'>${i}</li>`
       }
     }
-    paginationStr += `<li class="${pCName} ${nextCName}${totalPageCount === 1 ? disbaleNextCName : ''}">下一页</li></ul>`
+    paginationStr += `<li class="${pCName} ${nextCName} ${totalPageCount === 1 ? disbaleNextCName : ''}">下一页</li></ul>`
     pageContainer.innerHTML = paginationStr
     // 切换页码
     this.switchPage()
