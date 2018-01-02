@@ -126,9 +126,13 @@ class SimplePagination {
     let prevBtn = this.selectorEle('.' + state.prevCName)
     let nextBtn = this.selectorEle('.' + state.nextCName)
     // 当前页已经是第一页，则禁止 上一页 按钮的可用性
-    state.pageNumber > 1 ? (this.hasClass(prevBtn, state.disbalePrevCName) && this.removeClass(prevBtn, state.disbalePrevCName)) : (!this.hasClass(prevBtn, state.disbalePrevCName) && this.addClass(prevBtn, state.disbalePrevCName))
+    state.pageNumber > 1
+      ? (this.hasClass(prevBtn, state.disbalePrevCName) && this.removeClass(prevBtn, state.disbalePrevCName))
+      : (!this.hasClass(prevBtn, state.disbalePrevCName) && this.addClass(prevBtn, state.disbalePrevCName))
     // 当前页已经是最后一页，则禁止 下一页 按钮的可用性
-    state.pageNumber >= state.totalPageCount ? (!this.hasClass(nextBtn, state.disbaleNextCName) && this.addClass(nextBtn, state.disbaleNextCName)) : (this.hasClass(nextBtn, state.disbaleNextCName) && this.removeClass(nextBtn, state.disbaleNextCName))
+    state.pageNumber >= state.totalPageCount
+      ? (!this.hasClass(nextBtn, state.disbaleNextCName) && this.addClass(nextBtn, state.disbaleNextCName))
+      : (this.hasClass(nextBtn, state.disbaleNextCName) && this.removeClass(nextBtn, state.disbaleNextCName))
   }
 
   renderPageDOM () {
@@ -145,7 +149,7 @@ class SimplePagination {
     `
     if (totalPageCount - 2 > maxShowBtnCount) {
       paginationStr += `
-      <li class="${pCName} number-ellipsis ellipsis-head">...</li>`
+      <li class="${pCName} number-ellipsis ellipsis-head" style="display: none;">...</li>`
       for (let i = 2; i < maxShowBtnCount + 2; i++) {
         paginationStr += `<li class="${pCName} ${pageNumberCName} ${i === 1 ? activeCName : ''}" ${dataNumberAttr}='${i}'>${i}</li>`
       }
