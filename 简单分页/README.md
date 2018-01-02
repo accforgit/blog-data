@@ -55,7 +55,7 @@
 
 首先 `new`这个类，然后调用 `init`方法，传入相应的参数即可，例如：
 ```js
-const slp = new SimplePagination(3, 10)
+const slp = new SimplePagination(12)
 slp.init({
   container: '.box',
   maxShowBtnCount: 3,
