@@ -71,6 +71,7 @@ class SimplePagination {
     if (!len || this.isIllegal(pageNumber)) return
     // 清除 active 样式
     this.removeClass(this.selectorEle(`.${state.pCName}.${state.activeCName}`), state.activeCName)
+    let evaNumberLiItem
     if (state.activePosition) {
       let rEllipseSign = state.totalPageCount - (state.maxShowBtnCount - state.activePosition) - 1
       // 左边不需要出现省略符号占位
@@ -81,17 +82,17 @@ class SimplePagination {
             evaNumberLi[i].setAttribute(state.dataNumberAttr, i + 1)
           }
         }
-        this.addClass(this.selectorEle('.ellipsis-head'), 'page-hidden')
-        this.removeClass(this.selectorEle('.ellipsis-tail'), 'page-hidden')
+        this.hiddenEllipse('.ellipsis-head')
+        this.hiddenEllipse('.ellipsis-tail', false)
         this.addClass(evaNumberLi[pageNumber - 1], state.activeCName)
       }
       // 两边都需要出现省略符号占位
       if (pageNumber > state.maxShowBtnCount && pageNumber < rEllipseSign) {
         // 针对 maxShowBtnCount===1 的特殊处理
         pageNumber === 2 && state.maxShowBtnCount === 1
-          ? this.addClass(this.selectorEle('.ellipsis-head'), 'page-hidden')
-          : this.removeClass(this.selectorEle('.ellipsis-head'), 'page-hidden')
-        this.removeClass(this.selectorEle('.ellipsis-tail'), 'page-hidden')
+          ? this.hiddenEllipse('.ellipsis-head')
+          : this.hiddenEllipse('.ellipsis-head', false)
+        this.hiddenEllipse('.ellipsis-tail', false)
         for (let i = 1; i < state.maxShowBtnCount + 1; i++) {
           evaNumberLi[i].innerText = pageNumber + (i - state.activePosition)
           evaNumberLi[i].setAttribute(state.dataNumberAttr, pageNumber + (i - state.activePosition))
@@ -100,8 +101,8 @@ class SimplePagination {
       }
       // 右边不需要出现省略符号占位
       if (pageNumber >= rEllipseSign) {
-        this.addClass(this.selectorEle('.ellipsis-tail'), 'page-hidden')
-        this.removeClass(this.selectorEle('.ellipsis-head'), 'page-hidden')
+        this.hiddenEllipse('.ellipsis-tail')
+        this.hiddenEllipse('.ellipsis-head', false)
         if (+evaNumberLi[len - 2].getAttribute(state.dataNumberAttr) < state.totalPageCount - 1) {
           for (let i = 1; i < state.maxShowBtnCount + 1; i++) {
             evaNumberLi[i].innerText = state.totalPageCount - (state.maxShowBtnCount - i) - 1
@@ -125,13 +126,9 @@ class SimplePagination {
     let prevBtn = this.selectorEle('.' + state.prevCName)
     let nextBtn = this.selectorEle('.' + state.nextCName)
     // 当前页已经是第一页，则禁止 上一页 按钮的可用性
-    state.pageNumber > 1
-      ? (this.hasClass(prevBtn, state.disbalePrevCName) && this.removeClass(prevBtn, state.disbalePrevCName))
-      : (!this.hasClass(prevBtn, state.disbalePrevCName) && this.addClass(prevBtn, state.disbalePrevCName))
+    state.pageNumber > 1 ? (this.hasClass(prevBtn, state.disbalePrevCName) && this.removeClass(prevBtn, state.disbalePrevCName)) : (!this.hasClass(prevBtn, state.disbalePrevCName) && this.addClass(prevBtn, state.disbalePrevCName))
     // 当前页已经是最后一页，则禁止 下一页 按钮的可用性
-    state.pageNumber >= state.totalPageCount
-      ? (!this.hasClass(nextBtn, state.disbaleNextCName) && this.addClass(nextBtn, state.disbaleNextCName))
-      : (this.hasClass(nextBtn, state.disbaleNextCName) && this.removeClass(nextBtn, state.disbaleNextCName))
+    state.pageNumber >= state.totalPageCount ? (!this.hasClass(nextBtn, state.disbaleNextCName) && this.addClass(nextBtn, state.disbaleNextCName)) : (this.hasClass(nextBtn, state.disbaleNextCName) && this.removeClass(nextBtn, state.disbaleNextCName))
   }
 
   renderPageDOM () {
@@ -139,28 +136,29 @@ class SimplePagination {
     let state = this.state
     let pageContainer = this.selectorEle(state.container)
     if (!pageContainer) return
-    let totalPageCount = state.totalPageCount
+    let { totalPageCount, pCName, prevCName, disbalePrevCName, pageNumberCName,
+      activeCName, dataNumberAttr, maxShowBtnCount,nextCName, disbaleNextCName } = state
     let paginationStr = `
     <ul class="pagination">
-    <li class="page-li page-prev no-prev">上一页</li>
-    <li class="page-li page-number page-active" data-number='1'>1</li>
+    <li class="${pCName} ${prevCName} ${disbalePrevCName}">上一页</li>
+    <li class="${pCName} ${pageNumberCName} ${activeCName}" ${dataNumberAttr}='1'>1</li>
     `
-    if (totalPageCount - 2 > state.maxShowBtnCount) {
+    if (totalPageCount - 2 > maxShowBtnCount) {
       paginationStr += `
-      <li class="page-li number-ellipsis ellipsis-head page-hidden">...</li>`
-      for (let i = 2; i < state.maxShowBtnCount + 2; i++) {
-        paginationStr += `<li class="page-li page-number${i === 1 ? ' page-active' : ''}" data-number='${i}'>${i}</li>`
+      <li class="${pCName} number-ellipsis ellipsis-head">...</li>`
+      for (let i = 2; i < maxShowBtnCount + 2; i++) {
+        paginationStr += `<li class="${pCName} ${pageNumberCName} ${i === 1 ? activeCName : ''}" ${dataNumberAttr}='${i}'>${i}</li>`
       }
       paginationStr += `
-      <li class="page-li number-ellipsis ellipsis-tail">...</li>
-      <li class="page-li page-number" data-number='${totalPageCount}'>${totalPageCount}</li>
+      <li class="${pCName} number-ellipsis ellipsis-tail">...</li>
+      <li class="${pCName} ${pageNumberCName}" ${dataNumberAttr}='${totalPageCount}'>${totalPageCount}</li>
       `
     } else {
       for (let i = 2; i <= totalPageCount; i++) {
-        paginationStr += `<li class="page-li page-number" data-number='${i}'>${i}</li>`
+        paginationStr += `<li class="${pCName} ${pageNumberCName}" ${dataNumberAttr}='${i}'>${i}</li>`
       }
     }
-    paginationStr += '<li class="page-li page-next' + (totalPageCount === 1 ? ' no-next' : '') + '">下一页</li></ul>'
+    paginationStr += `<li class="${pCName} ${nextCName}${totalPageCount === 1 ? disbaleNextCName : ''}">下一页</li></ul>`
     pageContainer.innerHTML = paginationStr
     // 切换页码
     this.switchPage()
@@ -173,6 +171,12 @@ class SimplePagination {
       pageNumber > state.totalPageCount || pageNumber < 1 ||
       typeof pageNumber !== 'number' || pageNumber !== pageNumber
     )
+  }
+
+  hiddenEllipse (selector, shouldHidden = true) {
+    shouldHidden
+      ? this.selectorEle(selector).style.display = 'none'
+      : this.selectorEle(selector).style.display = ''
   }
 
   selectorEle (selector, all = false) {
