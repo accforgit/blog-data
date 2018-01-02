@@ -71,7 +71,6 @@ class SimplePagination {
     if (!len || this.isIllegal(pageNumber)) return
     // 清除 active 样式
     this.removeClass(this.selectorEle(`.${state.pCName}.${state.activeCName}`), state.activeCName)
-    let evaNumberLiItem
     if (state.activePosition) {
       let rEllipseSign = state.totalPageCount - (state.maxShowBtnCount - state.activePosition) - 1
       // 左边不需要出现省略符号占位
