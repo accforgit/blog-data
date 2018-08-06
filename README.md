@@ -12,6 +12,6 @@
   推荐其中一个高赞回答中提到的 [DownGit](https://minhaskamal.github.io/DownGit/#/home)，当然，你也可以选择你喜欢的回答
 
 - 如果不想下载安装任何的工具
-  本仓库中有个 [/cloneDir/index.js](https://github.com/accforgit/blog-data/blob/master/cloneDir/index.js) 文件，将此文件中的代码复制下来，然后将复制的代码存放到本地，例如命名为 `cloneDir.js`，然后 `node cloneDir.js`，根据控制台的提示输入你所需要的文件(夹)路径即可，例如输入：``
-  ![image]()
+  本仓库中有个 [/cloneDir/index.js](cloneDir/index.js) 文件，将此文件中的代码复制下来，然后将复制的代码存放到本地，例如命名为 `cloneDir.js`，然后 `node cloneDir.js`，根据控制台的提示输入你所需要的文件(夹)路径即可，例如：
+  ![image](cloneDir/example.png)
   >ps: 这份代码是我还在上大学的时候写的，可以满足基本的功能使用，但不保证没有任何 bug，关于此文件的详细说明可见 [如何在github上下载单个文件夹？](https://blog.csdn.net/DeepLies/article/details/52754980)
