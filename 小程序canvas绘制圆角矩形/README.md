@@ -31,7 +31,7 @@
 
 如果这个矩形选区只是 `canvas`画布的一部分，为了避免对后续的影响，最好在 `beginPath`之前，将之前的动作 `save`，然后画完后再 `restore`
 
-一个关于 **在 `canvas`上绘制圆角图片，并下载到本地** 的可运行示例代码已经放到 [github]()上了，注释也比较详细，需要的可自取
+一个关于 **在 `canvas`上绘制圆角图片，并下载到本地** 的可运行示例代码已经放到 [github](https://github.com/accforgit/blog-data/tree/master/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E7%BB%98%E5%88%B6%E5%9C%86%E8%A7%92%E7%9F%A9%E5%BD%A2/project)上了，注释也比较详细，需要的可自取
 
 其中关键代码如下：
 
