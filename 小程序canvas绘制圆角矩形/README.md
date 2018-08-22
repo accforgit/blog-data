@@ -39,11 +39,11 @@
 /**
   * 
   * @param {CanvasContext} ctx canvas上下文
-  * @param {CanvasContext} x 圆角矩形选区的左上角 x坐标
-  * @param {CanvasContext} y 圆角矩形选区的左上角 y坐标
-  * @param {CanvasContext} w 圆角矩形选区的宽度
-  * @param {CanvasContext} h 圆角矩形选区的高度
-  * @param {CanvasContext} r 圆角的半径
+  * @param {number} x 圆角矩形选区的左上角 x坐标
+  * @param {number} y 圆角矩形选区的左上角 y坐标
+  * @param {number} w 圆角矩形选区的宽度
+  * @param {number} h 圆角矩形选区的高度
+  * @param {number} r 圆角的半径
   */
 function roundRect(ctx, x, y, w, h, r) {
   // 开始绘制
