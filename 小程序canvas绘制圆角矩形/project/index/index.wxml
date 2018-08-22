@@ -1,0 +1,1 @@
+<canvas bindlongpress="saveImageToPhotosAlbum" class="card_canvas" canvas-id="shareCard" style="width: {{canvasWidth + 'px'}}; height: {{canvasHeight + 'px'}};margin: 0 auto;" />
