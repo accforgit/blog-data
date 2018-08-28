@@ -4,7 +4,7 @@
 
 不过，作为技术型<del>体力劳动者</del>人才，重复一种动作几十甚至上百遍未免有点丢失 `biger`，想起前段时间我花费了 **大量时间** 翻译的 [Puppeteer](https://juejin.im/post/5b362d6051882574b62a0b17)，至今还没体现出其价值来，于是决定就用它了。
 
->本文的可运行示例代码已经上传到 [github](https://github.com/accforgit/blog-data/%E5%B0%86%E8%87%AA%E5%B7%B1%E5%9C%A8CSDN%E4%B8%8A%E7%9A%84%E6%96%87%E7%AB%A0%E4%B8%8B%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%B9%B6%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%8E%98%E9%87%91)了，需要的请自取，顺手 `star`哦~
+>本文的可运行示例代码已经上传到 [github](https://github.com/accforgit/blog-data/tree/master/%E5%B0%86%E8%87%AA%E5%B7%B1%E5%9C%A8CSDN%E4%B8%8A%E7%9A%84%E6%96%87%E7%AB%A0%E4%B8%8B%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%B9%B6%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%8E%98%E9%87%91)了，需要的请自取，顺手 `star`哦~
 
 ---
 
