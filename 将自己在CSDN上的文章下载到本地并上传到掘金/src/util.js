@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 
 // 导航超时时间
-const timeout = 300000
+const timeout = 0
 // 系统
 const browserFetcher = puppeteer.createBrowserFetcher()
 const platform = browserFetcher.platform()

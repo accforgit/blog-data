@@ -1,4 +1,5 @@
 const path = require('path')
+const { sleep } = require('./util')
 const getBrowser = require('./browserManage')
 let browserManage = null
 
@@ -29,6 +30,20 @@ const downloadImg = async ({title, content, articleId}) => {
   const page = await browserManage.newCtrlPage()
   await page.goto(`https://blog.csdn.net/DeepLies/article/details/${articleId}`, { timeout: 0 })
   const imgsReactList = await page.evaluate(async () => {
+    // 外部的 sleep函数传不进来，只能重新定义
+    function sleep(timer = 1) {
+      return new Promise(resolve => {
+        const st = setTimeout(() => {
+          clearTimeout(st)
+          resolve()
+        }, timer * 1000)
+      })
+    }
+    async function imgReload (img) {
+      return new Promise(resolve => {
+        img.onload = () => resolve()
+      })
+    }
     // 隐藏广告元素
     const adEle = document.querySelector('.pulllog-box')
     adEle && (adEle.style.display = 'none')
@@ -36,9 +51,18 @@ const downloadImg = async ({title, content, articleId}) => {
     const btnMore = document.getElementById('btn-readmore')
     btnMore && document.getElementById('btn-readmore').click()
     // 获取页面上所有图片
-    const imgs = document.querySelectorAll('.markdown_views p img')
-    if (!imgs || !imgs.length) return []
-    const rects = Array.from(imgs).map(img => {
+    let imgs = Array.from(document.querySelectorAll('.markdown_views img') || [])
+    if (!imgs.length) return []
+    imgs = Array.from(imgs)
+    // 去掉图片链接中的加水印参数
+    imgs.forEach(img => {
+      const mt = img.src.match(/(.+)\?/)
+      mt && (img.src = mt[1])
+    })
+    // 如果图片超过5张，则认为平均每张图片需要2s加载完毕，小于等于5张则假设全部加载完毕最多需要10s
+    // 超时则认为网络有问题，就不管了
+    await Promise.race([sleep(imgs.length > 5 ? imgs.length * 2 : 10), Promise.all(imgs.map(img => imgReload(img)))])
+    const rects = imgs.map(img => {
       const { left, top, width, height } = img.getBoundingClientRect()
       return { x: left, y: top, width, height }
     })

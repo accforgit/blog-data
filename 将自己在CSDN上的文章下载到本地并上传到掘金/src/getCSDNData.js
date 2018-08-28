@@ -44,9 +44,9 @@ const getCSDNData = async () => {
   await sleep(1000)
   await page.waitForSelector('#username')
   // 输入你的账户名
-  await page.type('#username', 'Your account')
+  await page.type('#username', 'Your Account')
   // 输入你的密码
-  await page.type('#password', 'Your password')
+  await page.type('#password', 'Your Password')
   // 登录
   const loginBtn = await page.$('.logging')
   await loginBtn.click()
