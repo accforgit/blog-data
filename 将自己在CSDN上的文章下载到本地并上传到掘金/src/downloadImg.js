@@ -53,7 +53,6 @@ const downloadImg = async ({title, content, articleId}) => {
     // 获取页面上所有图片
     let imgs = Array.from(document.querySelectorAll('.markdown_views img') || [])
     if (!imgs.length) return []
-    imgs = Array.from(imgs)
     // 去掉图片链接中的加水印参数
     imgs.forEach(img => {
       const mt = img.src.match(/(.+)\?/)
