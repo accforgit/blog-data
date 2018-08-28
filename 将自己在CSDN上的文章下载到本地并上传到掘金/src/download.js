@@ -21,7 +21,7 @@ const download = async(title, content, articleId) => {
       console.log(`下载失败的文章(共${errorDownload.length}篇)：`, errorDownload)
     } else {
       // 如果你不想上传，就不调用 upload 即可
-      // upload(title, manageContent)
+      upload(title, manageContent)
       successDownLoad.push(title)
       console.log(`已经下载完毕${successDownLoad.length}篇文章`)
     }
