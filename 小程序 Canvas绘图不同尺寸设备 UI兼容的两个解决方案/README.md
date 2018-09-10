@@ -91,4 +91,6 @@ this.setData({
 })
 ```
 
->本文可运行示例代码已经放到 [github](%E5%B0%8F%E7%A8%8B%E5%BA%8F%20Canvas%E7%BB%98%E5%9B%BE%E4%B8%8D%E5%90%8C%E5%B0%BA%E5%AF%B8%E8%AE%BE%E5%A4%87%20UI%E5%85%BC%E5%AE%B9%E7%9A%84%E4%B8%A4%E4%B8%AA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88)上了，有兴趣的可以看下，注释算是很详细了，喜欢的话顺手 `star`哦~
+以上，两种方法都可以选择，各有利弊，第一种要写很多 `rem`转换，第二种需要做的操作又比较多，各有利弊，根据真实需求进行抉择即可。
+
+>本文可运行示例代码已经放到 [github](https://github.com/accforgit/blog-data/tree/master/%E5%B0%8F%E7%A8%8B%E5%BA%8F%20Canvas%E7%BB%98%E5%9B%BE%E4%B8%8D%E5%90%8C%E5%B0%BA%E5%AF%B8%E8%AE%BE%E5%A4%87%20UI%E5%85%BC%E5%AE%B9%E7%9A%84%E4%B8%A4%E4%B8%AA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/project)上了，有兴趣的可以看下，注释算是很详细了，喜欢的话顺手 `star`哦~
