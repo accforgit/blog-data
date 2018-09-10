@@ -1,0 +1,6 @@
+<view class="section" bindlongpress="saveImageToPhotosAlbum">
+  <canvas class="canvas_box" canvas-id="shareCard" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;position: absolute; z-index: -1;" />
+  <cover-view style="width: {{picWidth}}px; height: {{picHeight}}px;background-color: #fff;">
+    <cover-image wx-if="{{picLocalPath}}" src="{{picLocalPath}}" style="width: 100%;height: 100%;"></cover-image>
+  </cover-view>
+</view>

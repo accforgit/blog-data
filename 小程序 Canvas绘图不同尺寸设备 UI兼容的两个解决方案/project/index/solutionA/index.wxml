@@ -1,0 +1,3 @@
+<view class="section">
+  <canvas class="canvas_box" canvas-id="shareCard" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;background-color: pink" />
+</view>

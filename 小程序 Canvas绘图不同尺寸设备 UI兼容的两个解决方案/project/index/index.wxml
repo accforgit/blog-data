@@ -1,0 +1,4 @@
+<view>
+  <button id="a" bindtap="goSolution">类 `rem` 方案示例</button>
+  <button id="b" bindtap="goSolution">图片代替 方案示例</button>
+</view>
