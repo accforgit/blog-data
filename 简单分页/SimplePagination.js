@@ -71,7 +71,6 @@ class SimplePagination {
     if (!len || this.isIllegal(pageNumber)) return
     // 清除 active 样式
     this.removeClass(this.selectorEle(`.${state.pCName}.${state.activeCName}`), state.activeCName)
-    let evaNumberLiItem
     if (state.activePosition) {
       let rEllipseSign = state.totalPageCount - (state.maxShowBtnCount - state.activePosition) - 1
       // 左边不需要出现省略符号占位
@@ -89,9 +88,7 @@ class SimplePagination {
       // 两边都需要出现省略符号占位
       if (pageNumber > state.maxShowBtnCount && pageNumber < rEllipseSign) {
         // 针对 maxShowBtnCount===1 的特殊处理
-        pageNumber === 2 && state.maxShowBtnCount === 1
-          ? this.hiddenEllipse('.ellipsis-head')
-          : this.hiddenEllipse('.ellipsis-head', false)
+        this.hiddenEllipse('.ellipsis-head', pageNumber === 2 && state.maxShowBtnCount === 1)
         this.hiddenEllipse('.ellipsis-tail', false)
         for (let i = 1; i < state.maxShowBtnCount + 1; i++) {
           evaNumberLi[i].innerText = pageNumber + (i - state.activePosition)
@@ -118,10 +115,10 @@ class SimplePagination {
     state.pageNumber = pageNumber
     state.onPageChange && state.onPageChange(state)
     // 判断 上一页 下一页 是否可使用
-    this.switchPrevNextAble(evaNumberLi)
+    this.switchPrevNextAble()
   }
 
-  switchPrevNextAble (evaNumberLi) {
+  switchPrevNextAble () {
     let state = this.state
     let prevBtn = this.selectorEle('.' + state.prevCName)
     let nextBtn = this.selectorEle('.' + state.nextCName)
@@ -178,9 +175,7 @@ class SimplePagination {
   }
 
   hiddenEllipse (selector, shouldHidden = true) {
-    shouldHidden
-      ? this.selectorEle(selector).style.display = 'none'
-      : this.selectorEle(selector).style.display = ''
+    this.selectorEle(selector).style.display = shouldHidden ? 'none' : ''
   }
 
   selectorEle (selector, all = false) {
