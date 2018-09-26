@@ -183,19 +183,16 @@ class SimplePagination {
   }
 
   hasClass (eleObj, className) {
-    return eleObj.className.indexOf(className) !== -1
+    return eleObj.classList.contains(className);
   }
 
   addClass (eleObj, className) {
-    if (!this.hasClass(eleObj, className)) {
-      eleObj.className = eleObj.className + ' ' + className
-    }
+      eleObj.classList.add(className);
   }
 
   removeClass (eleObj, className) {
     if (this.hasClass(eleObj, className)) {
-      // 移除需要删除的类名，再赋值
-      eleObj.className = eleObj.className.split(' ').filter(item => item !== className).join(' ')
+        eleObj.classList.remove(className);
     }
   }
 }
