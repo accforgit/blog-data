@@ -1,0 +1,45 @@
+body {
+  background-color: rgb(236, 236, 236);
+}
+h3, p {
+  margin: 0;
+}
+.card-item {
+  position: relative;
+  display: inline-block;
+  margin-left: 30px;
+  width: 260px;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+}
+.card-item:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+  border-color: rgba(0,0,0,0.09);
+}
+.card-item.active {
+  transition: transform 1s ease;
+}
+.card-title {
+  padding: 16px 24px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #e8e8e8;
+}
+.card-title h3 {
+  display: inline-block;
+}
+.card-content{
+  padding: 24px;
+}
+.icon-btn {
+  float: right;
+  font-size: 14px;
+  color: #1890ff;
+  cursor: pointer;
+}
+.update-count {
+  text-align: center;
+}

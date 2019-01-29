@@ -1,0 +1,12 @@
+li {
+  list-style: none;
+}
+.route {
+  padding: 20px;
+}
+.route span {
+  font-size: 14px;
+  color: #1890ff;
+  cursor: pointer;
+  margin-left: 40px;
+}
