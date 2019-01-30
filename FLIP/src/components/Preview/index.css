@@ -1,14 +1,14 @@
 .pic-item {
   position: relative;
   display: inline-block;
+  width: 100px;
   overflow: hidden;
+  font-size: 0;
   border-radius: 10px;
   background-size: cover;
   background-repeat: no-repeat;
 }
-.pic-item.active {
-  transition: transform 1s ease;
-}
+
 .pic-item::before {
   content: ' ';
   position: absolute;
@@ -24,6 +24,10 @@
 }
 .pic-item:hover::before {
   opacity: 1;
+}
+.pic {
+  width: 100%;
+  width: 100%;
 }
 
 .preview-box {

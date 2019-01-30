@@ -10,6 +10,8 @@ const previewFirstRect = [0, 0]
 const previewLastRect = [0, 0]
 // 临时记录位置信息
 let rectInfo = null
+// First与Last两个状态之间的缩放比例
+let scaleValue = 1
 // 生成初始测试数据
 let listData = Array(10).fill().map(() => {
   const width = getSize()
@@ -21,9 +23,9 @@ let listData = Array(10).fill().map(() => {
   }
 })
 
-// 获取在 50-200之间的随机整数
+// 获取在 200-900之间的随机整数
 function getSize () {
-  return Math.round(Math.random() * 150 + 50)
+  return Math.round(Math.random() * 700 + 200)
 }
 // 生成随机 16进制颜色
 function color16(){
@@ -44,9 +46,10 @@ export default class Preview extends React.Component {
     if (this.state.previewStatus === 1) {
       // Last + Invert
       if (previewVisibleStatus === 1) {
-        rectInfo = this.previewRef.current.getBoundingClientRect()
-        previewLastRect[0] = rectInfo.left
-        previewLastRect[1] = rectInfo.top
+        const lastRectInfo = this.previewRef.current.getBoundingClientRect()
+        previewLastRect[0] = lastRectInfo.left
+        previewLastRect[1] = lastRectInfo.top
+        scaleValue = rectInfo.width / lastRectInfo.width
       }
       this.setState({
         previewStatus: 2
@@ -78,7 +81,7 @@ export default class Preview extends React.Component {
       })
     }
   }
-  transEnd () {
+  transEnd (e) {
     if (previewVisibleStatus === 2 && previewVisibleStatus !== 3) {
       previewVisibleStatus = 3
       this.setState({
@@ -97,12 +100,8 @@ export default class Preview extends React.Component {
                 key={index}
                 className="pic-item"
                 onClick={this.previewItem.bind(this, 1, item)}
-                title="点击预览"
-                style={{
-                  width: item.width + 'px',
-                  height: item.height + 'px',
-                  backgroundImage: `url(${item.bgPic})`
-                }}>
+                title="点击预览">
+                <img src={item.bgPic} alt="" className="pic" />
               </li>
             ))
           }
@@ -110,19 +109,22 @@ export default class Preview extends React.Component {
         {
           (previewVisibleStatus === 1 || previewVisibleStatus === 2) ? (
             <>
-              <div className="preview-box" onClick={this.previewItem.bind(this, 2)} style={{
-                opacity: previewStatus === 3 && previewVisibleStatus !== 2 ? .65 : 0
-              }}></div>
+              <div className="preview-box"
+                onClick={this.previewItem.bind(this, 2)}
+                style={{
+                  opacity: previewStatus === 3 && previewVisibleStatus !== 2 ? .65 : 0
+                }}></div>
               <img
                 ref={this.previewRef}
                 className={`img${(previewStatus === 3 && previewVisibleStatus === 1) || previewVisibleStatus === 2 ? ' active' : ''}`}
                 src={previewImgInfo.bgPic}
                 style={{
                   transform: previewStatus === 2 || previewVisibleStatus === 2
-                    ? `translate3d(${previewFirstRect[0] - previewLastRect[0]}px, ${previewFirstRect[1] - previewLastRect[1]}px, 0)`
-                    : 'translate3d(0, 0, 0)',
-                  width: previewStatus === 3 && previewVisibleStatus === 1 ? '520px' : previewImgInfo.width + 'px'
+                    ? `translate3d(${previewFirstRect[0] - previewLastRect[0]}px, ${previewFirstRect[1] - previewLastRect[1]}px, 0) scale(${scaleValue})`
+                    : 'translate3d(0, 0, 0) scale(1)',
+                  transformOrigin: '0 0'
                 }}
+                onClick={this.previewItem.bind(this, 2)}
                 onTransitionEnd={this.transEnd.bind(this)}
                 alt="" />
             </>
