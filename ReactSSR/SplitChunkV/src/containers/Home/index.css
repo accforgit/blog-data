@@ -1,0 +1,40 @@
+.home {
+  padding: 0 20px;
+}
+.itemBox {
+  display: inline-block;
+  width: 115px;
+  margin-right: 25px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+}
+.pic {
+  width: 100%;
+  height: 161px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+.name {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color: #333;
+}
+.score {
+}
+.payTicket {
+  height: 24px;
+  width: 90px;
+  line-height: 24px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+  background-color: #268dcd;
+}

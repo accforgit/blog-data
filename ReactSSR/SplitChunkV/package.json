@@ -1,0 +1,51 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:**",
+    "dev:start": "nodemon --watch build --exec node \"./build/bundle.js\"",
+    "dev:build:server": "webpack --config webpack.server.js --watch",
+    "dev:build:client": "webpack --config webpack.client.js --watch",
+    "dev:dataServer": "nodemon --watch \"./src/dataServer.js\" --exec node \"./src/dataServer.js\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@loadable/component": "^5.6.1",
+    "@loadable/server": "^5.6.1",
+    "axios": "^0.18.0",
+    "hoist-non-react-statics": "^3.3.0",
+    "http-proxy": "^1.17.0",
+    "koa": "^2.7.0",
+    "koa-session": "^5.10.1",
+    "koa-static": "^5.0.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "react-router-config": "^4.4.0-beta.6",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "stream-to-promise": "^2.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "7.3.1",
+    "@babel/preset-react": "7.0.0",
+    "@babel/runtime": "7.3.1",
+    "@loadable/babel-plugin": "^5.6.0",
+    "@loadable/webpack-plugin": "^5.5.0",
+    "babel-loader": "8.0.5",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^2.1.0",
+    "isomorphic-style-loader": "^5.0.1",
+    "mini-css-extract-plugin": "^0.5.0",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "description": ""
+}

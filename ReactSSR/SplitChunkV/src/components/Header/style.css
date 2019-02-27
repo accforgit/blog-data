@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 28px;
+  color: #d5d5d5;
+  background-color: #545652;
+}
+.commonText {
+  color: #d5d5d5;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.link {
+  margin-right: 24px;
+  text-decoration: none;
+  font-weight: 700;
+}
+.link:hover {
+  text-decoration: underline;
+  color: #fff;
+}
