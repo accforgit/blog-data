@@ -29,39 +29,46 @@ export default {
   // 记录首页 index页面内的弹窗项
   index: {
     modalList: [{
-      name: 'modal_1',
-      level: 10,
-      show: true
+      id: 1,
+      condition: 'modal_1',
+      level: 100,
+      feShow: true
     }, {
-      name: 'modal_2',
+      id: 2,
+      condition: 'modal_2',
       level: 22,
-      show: true
+      feShow: true
     }, {
-      name: 'modal_3',
+      id: 3,
+      condition: 'modal_3',
       level: 70,
-      show: true
+      feShow: false
     }],
     children: {
       child1: {
         modalList: [{
-          name: 'modal_1_1',
-          level: 8,
-          show: true
+          id: 11,
+          condition: 'condition_1_1',
+          level: 82,
+          feShow: true
         }, {
-          name: 'modal_1_2',
-          level: 62,
-          show: true
+          id: 12,
+          condition: ['condition_1_2', 'condition_1_3', 'condition_1_4'],
+          level: 12,
+          feShow: true
         }],
         children: {
           child1_1: {
             modalList: [{
-              name: 'modal_1_1_1',
-              level: 8,
-              show: true
+              id: 21,
+              condition: ['condition_1_1_1', 'condition_1_1_2'],
+              level: 320,
+              feShow: true
             }, {
-              name: 'modal_1_1_2',
-              level: 60,
-              show: true
+              id: 22,
+              condition: 'condition_1_1_3',
+              level: 300,
+              feShow: true
             }]
           }
         }
@@ -71,15 +78,15 @@ export default {
   // ...还可以继续记录其他页面的弹窗结构
 }
 ```
-`modalMap.js`文件记录每个页面内所有的弹窗项，例如，首页 `index`内的弹窗项都在属性名`index`对于的值数据结构中，`index`这个页面主组件内存在两个 `modal`，可以分别命名为 `modal_1`和 `modal_2`，如果 `index`这个页面主组件的子组件内也有 `modal`，则继续嵌套，例如，`index`主组件的子组件 `child1`中也有 `modal`，那么就把 `child1`放到 `index`的 `children`中继续记录，以此类推
+`modalMap.js`文件记录每个页面内所有的弹窗项，例如，首页 `index`内的弹窗项都在属性名`index`对应的值数据结构中，`index`这个页面主组件内存在两个 `modal`，它们的 `id`分别为 `1`和 `2`，如果 `index`这个页面主组件的子组件内也有 `modal`，则继续嵌套，例如，`index`主组件的子组件 `child1`中也有 `modal`，那么就把 `child1`放到 `index`的 `children`中继续记录，以此类推
 
 这种结构看起来比较清晰，主组件及主组件内的子组件内的 `modal`都很清晰，一目了然，当然，你可以不用这种结构，完全取决于你，这里就暂时这么定义
 
-每个 `modal`除了 `name`之外，还有 `level` 和 `show`属性
+每个 `modal`除了 `id`之外，还有 `condition`、`level` 和 `show`属性
 
-`level` 用于标识当前 `modal`的层级，每个页面正常只能同时展示一个 `modal`，但如果有多个 `modal`都同一时间都满足展示的条件，则对比它们的 `level`值，哪个大就优先展示哪个，其余的忽略掉，杜绝一个页面可能提示展示多个弹窗的情况；
+`condition`是作为一种标识存在，后面会说到，`level` 用于标识当前 `modal`的层级，每个页面正常只能同时展示一个 `modal`，但如果有多个 `modal`都同一时间都满足展示的条件，则对比它们的 `level`值，哪个大就优先展示哪个，其余的忽略掉，杜绝一个页面可能提示展示多个弹窗的情况；
 
-`show`属性则是在 `modal`内部来决定 `modal`最终是否展示，这样一来就可以无视外界条件，很轻松地通过配置来禁止掉弹窗的显示
+`feShow`属性则是在 `modal`内部来决定 `modal`最终是否展示，这样一来就可以无视外界条件，很轻松地在前端通过配置来禁止掉弹窗的显示
 
 ## 通过发布/订阅模式来管理弹窗
 
@@ -98,47 +105,93 @@ export default {
 ```js
 // modalManage.js
 class ModalManage {
-  constructor (modalList) {
-    this.modalFlatMap = {}
-    this.modalList = modalList
+  constructor () {
+    // ...
   }
-  // ... 
+  add () {
+    // ...
+    this.nodify()
+  }
+  notify () {
+    // ...
+  }
 }
 ```
-通过 `ModalManage`类来管理弹窗，此类在初始化时接收一个参数 `modalList`，这个参数其实就是刚进入页面时，页面上所有可能展示的弹窗(包括子组件的弹窗)的名称集合，也就是必须要知道页面上到底有多少个可能同时展示的弹窗，以上述示例代码 `modalMap.js`为例， `index`页面的 `modalList`值就是 `['modal_1', 'modal_2', 'modal_3', 'modal_1_1', 'modal_1_2', 'modal_1_1_1', 'modal_1_1_2']`
+通过 `ModalManage`类来管理弹窗，在 `new ModalManage`的时候传入一个标识值，用于预先告知接下来一共将会进行 `n` 次订阅，`add`就是订阅方法，当接口返回弹窗是否展示信息的时候，就调用 `add`方法订阅一次，并且紧接着在 `add`方法里调用 `notify`，这个方法就是发布方法
+
+`notify`方法中将检查当前订阅的次数是否已经达到了 `n`次，如果是，就说明订阅完毕，所有弹窗的信息都已经接收完毕，下一步就可以根据这些收集起来的弹窗信息，根据一定的逻辑进行展示，例如只展示 `level`值最大的那个弹窗
+
+根据以上思路，`ModalManage`类的 `constructor`方法中需要设置的初始值差不多也就知道了
+
+```js
+constructor (modalList) {
+  this.modalFlatMap = {}
+  this.modalList = modalList
+}
+```
+`modalFlatMap`用于缓存所有已经订阅的弹窗的信息
+
+`conditionList` 是 `ModalManage` 类在初始化时接收一个的参数，这个参数其实就是刚进入页面时，页面上所有可能展示的弹窗(包括子组件的弹窗)的 `id`集合，也就是必须要知道页面上到底有多少个可能同时展示的弹窗，以上述示例代码 `modalMap.js`为例， `index`页面的 `modalList`值就是 `['1', '2', '3', '11', '12', '21', '22']`
 
 这里其实直接传弹窗数量就行了，`index`中有 `7`个弹窗可能同时展示，所以可以直接传 `7`，我这里之所以要传名称进去，实际上是为了方便调试，如果代码出问题了，比如页面上实际有 `5`个接口可以控制 `5`个弹窗的展示，但你却只订阅了 `4`次，如果只传数字，你就需要一个个找过去看是哪一个忘记订阅了，但如果传名称，你一下子就能调试出来，也就是代码的可维护性会好一点
+
+到这里其实有个问题
+
+如果一个弹窗都是只由一个异步接口控制，那么上述没什么问题，但是如果某个弹窗的展示，需要根据多个异步接口的返回值来控制，那么就有问题了，特定弹窗的 `id`只有一个，但因为由多个接口控制，那么根据上述逻辑，就可能存在对同一个 `id`进行重复订阅的操作，所以这里需要改一下
+
+```js
+constructor (conditionList) {
+  this.modalFlatMap = {}
+  this.conditionList = conditionList
+  this.hasAddConditionList = []
+}
+```
+`id`只作为一个标识符，使用 `condition`来控制订阅，如果一个弹窗通过一个异步条件控制，则 `condition`的值就是一个字符串(这个字符串只是起到一个标识作用)，如果由 `n`(`n>=1`)个异步条件控制，则值为一个数组，数组的长度就是 `n`
+`conditionList`就是页面上所有 `condition`的集合，`hasAddConditionList`用于缓存当前已经进行订阅操作的 `condition`
 
 当页面上任意一个弹窗的状态（即是否满足展示的条件）确定下来后，就进行订阅操作：
 ```js
 // modalManage.js
-add (name, dataInfo) {
-  // level, handler
-  if (this.modalList.indexOf(name) !== -1) {
-    if (!this.modalFlatMap[name]) {
-      this.modalFlatMap[name] = dataInfo
-      this.notify()
-    } else {
-      console.log('重复订阅')
+add (condition, infoObj) {
+  if (!this.conditionList.includes(condition)) return console.log('无效订阅:', condition)
+  if (this.hasAddConditionList.includes(condition)) return console.log('重复订阅:', condition)
+  this.hasAddConditionList.push(condition)
+  const modalItem = getModalItemByCondition(condition, modalMap)
+  const existMap = this.modalFlatMap[modalItem.id]
+  if (existMap) {
+    // 说明当前弹窗由多个逻辑字段控制
+    const handler = existMap.handler
+    existMap.rdShow = existMap.rdShow && infoObj.rdShow
+    existMap.handler = () => {
+      handler && handler()
+      infoObj.handler && infoObj.handler()
     }
   } else {
-    console.log('无效订阅')
+    this.modalFlatMap[modalItem.id] = {
+      level: modalItem.level,
+      feShow: modalItem.feShow,
+      rdShow: infoObj.rdShow,
+      handler: infoObj.handler
+    }
   }
+  this.notify()
 }
 ```
+`this.modalFlatMap`的属性名就是弹窗的 `id`，每个属性的值都是一个包含 `4`个属性的对象，`level` 和 `feShow`就是上面 `modalMap.js`中的 `level`、`feShow`，`rdShow`是从异步接口或其他逻辑返回的用于控制弹窗是否展示的值，`handler`则是用于当选择出了需要展示的弹窗时，该执行的函数
 
-`this.modalFlatMap`是为了记录订阅列表，当订阅列表的长度和 `modalList`相同时，说明所有的弹窗状态都已经准备就绪，可以根据这些弹窗的优先级进行展示了，也就是 `notify`方法要做的事情
+如果对于同一个 `id`，有多个`condition`进行订阅，则将这些订阅的弹窗信息进行合并
 
-`notify`方法中，先排除掉属性 `show`为 `false`的弹窗项，再对比剩下的弹窗的 `level`，只展示 `level`最大的那个弹窗：
+`this.hasAddConditionList`记录了订阅列表的信息，当订阅列表的长度和 `thisconditionList`长度相同时，说明所有的弹窗状态都已经准备就绪，可以根据这些弹窗的优先级进行展示了，也就是 `notify`方法要做的事情
+
+`notify`方法中，先排除掉属性 `feShow && rdShow`为 `false`的弹窗项，再对比剩下的弹窗的 `level`，只展示 `level`最大的那个弹窗：
 ```js
 // modalManage.js
 notify () {
-  if (Object.keys(this.modalFlatMap).length === this.modalList.length) {
-    const highLevelModal = Object.keys(this.modalFlatMap).filter(key => this.modalFlatMap[key].show).reduce((t, c) => {
-      return this.modalFlatMap[c].level > t.level ? this.modalFlatMap[c] : t
-      // 这个 { level: -1 } 只是为了给 reduce函数一个 initialValue，modal项的 level都应该大于这个 initialValue的 level值，即 -1
+  if (this.hasAddConditionList.length === this.conditionList.length) {
+    const highLevelModal = Object.values(this.modalFlatMap).filter(item => item.rdShow && item.feShow).reduce((t, c) => {
+      return c.level > t.level ? c : t
     }, { level: -1 })
-    highLevelModal.handler()
+    highLevelModal.handler && highLevelModal.handler()
   }
 }
 ```
@@ -155,7 +208,7 @@ const manageTypeMap = {}
 // 获取单例
 function createModalManage (type) {
   if (!manageTypeMap[type]) {
-    manageTypeMap[type] = new ModalManage(getAllModalList(modalMap[type]))
+    manageTypeMap[type] = new ModalManage(getAllConditionList(modalMap[type]))
   }
   return manageTypeMap[type]
 }
@@ -164,20 +217,19 @@ function createModalManage (type) {
 
 这样一来，无论弹窗分散在多少个组件内，无论这些组件嵌套得有多深，都能够在保证代码低耦合的前提下，顺利地订阅/发布事件
 
-这里的 `getAllModalList`方法是个工具方法，用于从 `modalMap`中获取页面对应的弹窗数据结构：
+这里的 `getAllConditionList`方法是个工具方法，用于从 `modalMap`中获取页面对应的弹窗数据结构：
 ```js
-// util.js
-const getAllModalList = modalInfo => {
+const getAllConditionList = modalInfo => {
   let currentList = []
   if (modalInfo.modalList) {
     currentList = currentList.concat(
-      modalInfo.modalList.reduce((t, c) => t.concat(c.name), [])
+      modalInfo.modalList.reduce((t, c) => t.concat(c.condition), [])
     )
   }
   if (modalInfo.children) {
     currentList = currentList.concat(
-      Object.keys(modalInfo.children).reduce((t, c) => {
-        return t.concat(getAllModalList(modalInfo.children[c]))
+      Object.values(modalInfo.children).reduce((t, c) => {
+        return t.concat(getAllConditionList(c))
       }, [])
     )
   }
@@ -199,4 +251,4 @@ const modalManage = createModalManage('index')
 
 无论是弹窗的管理还是挂件的管理，放在 `mvvm`框架中，都是数据的管理，主流前端框架对于复杂的数据管理，都已经有对应的解决方案，例如 `vuex` 和 `redux`等，这些解决方案当然也能够解决上面的问题
 
-本文主要是对这种理念的探讨，探讨出一种通用的解决方案，无论你用的是 `vue`、`react`、`angular`还是`jquery`一把梭，亦或是微信小程序、支付宝小程序、快应用等，都可以低成本地轻松套入使用
+本文主要是对这种理念的探讨，探讨出一种通用的解决方案，无论你用的是 `vue`、`react`、`angular`还是`jquery`一把梭，亦或是微信小程序、支付宝小程序、快应用等，都可以在不依赖其他库的前提下，低成本地轻松套入使用
