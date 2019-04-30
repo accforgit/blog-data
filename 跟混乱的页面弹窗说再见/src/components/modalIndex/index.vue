@@ -30,12 +30,11 @@ export default {
       apiName(modalItem).then(rst => {
         console.log('接口数据获取成功:', rst)
         // 接口的返回值控制弹窗的展示与否，所以加入弹窗管理实例中
-        modalManage.add(modalItem.name, {
-          level: modalItem.level,
-          show: modalItem.show,
+        modalManage.add(modalItem.condition, {
+          rdShow: rst.rdShow,
           handler: () => {
             console.log('弹窗展示：', modalItem)
-            showModal(modalItem.name)
+            showModal(modalItem.condition)
           }
         })
       })

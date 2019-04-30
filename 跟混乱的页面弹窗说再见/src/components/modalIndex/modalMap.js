@@ -1,39 +1,46 @@
 export default {
   index: {
     modalList: [{
-      name: 'modal_1',
-      level: 10,
-      show: true
+      id: 1,
+      condition: 'condition_1',
+      level: 100,
+      feShow: true
     }, {
-      name: 'modal_2',
+      id: 2,
+      condition: 'condition_2',
       level: 22,
-      show: true
+      feShow: true
     }, {
-      name: 'modal_3',
+      id: 3,
+      condition: 'condition_3',
       level: 70,
-      show: false
+      feShow: true
     }],
     children: {
       child1: {
         modalList: [{
-          name: 'modal_1_1',
-          level: 8,
-          show: true
+          id: 11,
+          condition: 'condition_1_1',
+          level: 82,
+          feShow: true
         }, {
-          name: 'modal_1_2',
-          level: 62,
-          show: true
+          id: 12,
+          condition: ['condition_1_2', 'condition_1_3', 'condition_1_4'],
+          level: 1200,
+          feShow: false
         }],
         children: {
           child1_1: {
             modalList: [{
-              name: 'modal_1_1_1',
-              level: 8,
-              show: true
+              id: 21,
+              condition: ['condition_1_1_1', 'condition_1_1_2'],
+              level: 320,
+              feShow: true
             }, {
-              name: 'modal_1_1_2',
-              level: 90,
-              show: false
+              id: 22,
+              condition: 'condition_1_1_3',
+              level: 300,
+              feShow: true
             }]
           }
         }
