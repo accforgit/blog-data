@@ -170,4 +170,4 @@ ctx.fill()
 
 ## 小结
 
-本文完整示例 [Live Demo]() 和 [示例代码]() 已经上传，感兴趣的可以亲自试下
+本文完整示例 [Live Demo](https://accforgit.github.io/canvas%E7%BB%98%E5%88%B6%E9%9B%B7%E8%BE%BE%E5%9B%BE/index.html) 和 [示例代码](https://github.com/accforgit/accforgit.github.com/blob/master/canvas%E7%BB%98%E5%88%B6%E9%9B%B7%E8%BE%BE%E5%9B%BE/index.html) 已经上传，感兴趣的可以亲自试下

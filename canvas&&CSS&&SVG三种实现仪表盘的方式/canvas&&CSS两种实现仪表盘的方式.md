@@ -218,4 +218,4 @@ draw(1.5 * Math.PI)
 
 `css`的新特性 `var` 和 `calc`还挺好用的嘛
 
-本文完整示例 [Live Demo]() 和 [示例代码]() 已经上传，感兴趣的可以亲自试下
+本文完整示例 [Live Demo](https://accforgit.github.io/Canvas%26%26CSS%26%26svg%E7%BB%98%E5%88%B6%E4%BB%AA%E8%A1%A8%E7%9B%98/index.html) 和 [示例代码](https://github.com/accforgit/accforgit.github.com/blob/master/Canvas%26%26CSS%26%26svg%E7%BB%98%E5%88%B6%E4%BB%AA%E8%A1%A8%E7%9B%98/index.html) 已经上传，感兴趣的可以亲自试下
