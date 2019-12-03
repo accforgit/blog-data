@@ -1,5 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator'
-import SkuManage, { joinKVStr, joinAttrStr } from './SkuManage'
+import SkuManage, { joinKVStr, joinAttrStr } from 'sku-manager'
 import baseData from './mockData'
 
 interface IEmptyMapItem {
