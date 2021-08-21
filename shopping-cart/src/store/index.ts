@@ -38,7 +38,7 @@ export default createStore({
   plugins: debug ? [createLogger()] : []
 })
 
-const key: InjectionKey<VuexStore<TRootState>> = Symbol('store')
+export const key: InjectionKey<VuexStore<TRootState>> = Symbol('store')
 
 export function useStore (): TRootStore {
   return baseUseStore(key)

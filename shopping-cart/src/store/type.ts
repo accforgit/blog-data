@@ -76,14 +76,3 @@ export type TStore<
 > = Omit<VuexStore<TState>, 'commit' | 'dispatch' | 'getters'> & TCommit & TDispatch & {
   getters: TGetters
 };
-
-
-// type A = { q: () => 1; w: () => '2' }
-// type B = { e: () => []; r: () => true; }
-// type C = { a: A; b: B; }
-
-// type D<T extends Record<string, TObjFn>, U extends TObjFn = FlatRootObj<T>, M extends TObjFn = UnionToIntersection<U>> = {
-//   [key in keyof M]: 1
-// }
-
-// type E = D<C>
