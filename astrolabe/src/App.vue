@@ -98,19 +98,22 @@ html, body {
       margin: 0;
       margin-bottom: 12px;
       list-style: none;
-    }
-    input {
-      width: 80px;
+      input {
+        width: 80px;
+        border: 1px solid #ccc;
+      }
     }
   }
 }
 .btn-box {
+  padding: 0;
   height: 48px;
   button {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
+    width: 100%;
     height: 48px;
     color: #fff;
     border: none;
