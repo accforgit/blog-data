@@ -1,0 +1,67 @@
+.App {
+  display: flex;
+  height: 100vh;
+}
+
+.editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 40%;
+  overflow: hidden;
+  .editor-box {
+    height: 25%;
+    overflow: hidden;
+    &.script-box {
+      height: 50%;
+    }
+  }
+}
+.preview-wrapper {
+  @headerH: 32px;
+  width: 60%;
+  display: flex;
+  height: 100%;
+  .slider-bar {
+    width: 16px;
+    cursor: ew-resize;
+    background-color: #000;
+  }
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    .preview-header {
+      display: flex;
+      align-items: center;
+      height: @headerH;
+      padding: 6px 12px;
+      background-color: #060606;
+      .run-btn {
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+    }
+    >iframe {
+      flex: 1;
+      width: 100%;
+      pointer-events: none;
+    }
+  }
+}
+.grey-btn {
+  padding: 4px 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 4px;
+  background-color: #444857;
+  &:hover {
+    background-color: #5a5f73;
+  }
+}

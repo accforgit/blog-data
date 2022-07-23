@@ -1,0 +1,37 @@
+.edit-com {
+  @headerH: 40px;
+  @headerPV: 4px;
+  height: 100%;
+  .header-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: @headerH;
+    padding: @headerPV 12px;
+    user-select: none;
+    color: #fff;
+    cursor: ns-resize;
+    background-color: #060606;
+    .box-left {
+      white-space: nowrap;
+      .language-text {
+        cursor: default;
+      }
+      >select {
+        width: 120px;
+        margin-left: 16px;
+        &:focus {
+          outline: none;
+        }
+        >option {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .editor-parent {
+    height: calc(100% - @headerPV * 2 - @headerH);
+    background-color: #1e1e1e;
+    color: #fff;
+  }
+}

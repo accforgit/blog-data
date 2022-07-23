@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>preview</title>
+</head>
+<body>
+</body>
+<script>
+  window.onload = function() {
+    window.parent.postMessage({
+      event: 'loaded'
+    })
+  }
+  window.addEventListener('message', e => {
+    if (e.data.event === 'reload') {
+      location.reload()
+      return
+    }
+    const { html, style, script } = e.data.data
+    const { importMap, content } = script
+    const styleTag = document.createElement('style')
+    styleTag.innerHTML = style
+    document.head.appendChild(styleTag)
+    if (importMap) {
+      const mapScriptTag = document.createElement('script')
+      mapScriptTag.type = 'importmap'
+      mapScriptTag.innerHTML = importMap
+      document.head.appendChild(mapScriptTag)
+    }
+    document.body.innerHTML = html
+    setTimeout(() => {
+      const scriptTag = document.createElement('script')
+      scriptTag.type = 'module'
+      scriptTag.innerHTML = content
+      document.body.appendChild(scriptTag)
+    })
+  })
+</script>
+</html>
