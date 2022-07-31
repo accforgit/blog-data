@@ -1,0 +1,87 @@
+.test {
+  display: flex;
+  height: 100vh;
+  .box1.box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .child {
+      position: relative;
+      height: 30%;
+      background-color: #1e1e1e;
+      &:hover {
+        z-index: 2;
+      }
+      .before, .after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 16px;
+        cursor: ns-resize;
+      }
+      .before {
+        top: 0;
+      }
+      .after {
+        bottom: 0;
+      }
+    }
+    .child1 {
+      height: 10%;
+    }
+  }
+  .box {
+    position: relative;
+    width: calc(25% - 4px);
+    height: 100%;
+    background-color: #1e1e1e;
+    z-index: 4;
+    &:hover {
+      z-index: 5;
+    }
+    .before, .after {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 16px;
+      cursor: ew-resize;
+    }
+    .before {
+      left: 0;
+    }
+    .after {
+      right: 0;
+    }
+  }
+}
+
+.before, .after {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  font-size: 12px;
+  user-select: none;
+  color: #fff;
+  background-color: #000;
+  &:before {
+    display: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 6;
+    box-shadow: 0px 0px 5px 0px #007fd4;
+  }
+  &:hover::before {
+    display: block;
+  }
+}
+
+.box {
+  >.before, >.after {
+    z-index: 4;
+  }
+}

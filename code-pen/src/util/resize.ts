@@ -30,7 +30,6 @@ export default class Resize {
 
   constructor(private eles: TToggleEles) {
     this.elesLength = eles.list.length
-    this.moveListener = this.moveListener.bind(this)
     this.upListener = this.upListener.bind(this)
     this.registerListeners()
   }
